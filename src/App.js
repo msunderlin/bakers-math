@@ -1,17 +1,22 @@
-import {useState, useEffect } from 'react';
 import './App.css';
+import {useState, useEffect } from 'react';
+//import firebase from './firebase';
 import RecipeForm from './components/recipe-form';
 import RecipeFormContainer from './components/recipe-form-container';
 import Page from './components/pageTemplate/page';
 
 function App(){
-  const [recipe,setRecipe] = useState([
+  const [recipe,setRecipe] = useState(
+    {
+      title:"",
+      ingredients:[
     { iname:"",
       iweight:0,
       ibase:true,
       ipercent:0,
-    }
-  ]);
+    },
+  ],
+    });
 
   
 
@@ -19,6 +24,7 @@ function App(){
     let index = e.target.dataset.index;
     let newRecipe = [...recipe];
     newRecipe[index][e.target.name] = e.target.value;
+    console.log(newRecipe);
     setRecipe(newRecipe);
     handlePercentChange();
   }
